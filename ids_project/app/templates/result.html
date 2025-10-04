@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction Results | IDS System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+  <div class="top-right-nav">
+    <a href="{{ url_for('main.home') }}" class="btn home-btn">🏠 Home</a>
+  </div>
+  <div class="result-container">
+    <h2>Prediction Results</h2>
+    <p>The uploaded CSV has been analyzed.</p>
+    <p><strong>Total Records:</strong> {{ total }} | <strong>Attacks Detected:</strong> {{ attacks }}</p>
+
+
+    {% for table in tables %}
+      <div class="result-table">
+        {{ table|safe }}
+      </div>
+    {% endfor %}
+
+    <div class="result-actions">
+      <a href="{{ download_link }}" class="btn" download>📥 Download Full CSV</a>
+      <a href="{{ url_for('dash.home') }}" class="btn secondary">🔙 Back to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | IDS System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="top-right-nav">
+        <a href="{{ url_for('main.home') }}" class="btn home-btn">🏠 Home</a>
+    </div>
+
+    {% if session.get('is_admin') %}
+  <p class="admin-notice">👑 Logged in as <strong>admin</strong>.</p>
+    {% endif %}
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+            <li class="flash {{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h1 class="headline">Dashboard01 of NIDS Pro</h1>
+    <div class="dashboard-container">
+        <h2>Intrusion Detection Dashboard</h2>
+        <p>Upload a CSV file to detect potential intrusions.</p>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="file" id="fileInput" accept=".csv" required><br><br>
+            <input type="submit" value="Predict" class="btn">
+        </form>
+
+          <a href="{{ url_for('auth.logout') }}" class="logout-link btn secondary">🚪 Logout</a>
+    </div>
+</body>
+
+<script>
+
+  setTimeout(() => {
+    const flashBox = document.querySelector(".flashes");
+    if (flashBox) {
+      flashBox.style.opacity = "0";
+      setTimeout(() => flashBox.remove(), 600); 
+    }
+  }, 4000);
+</script>
+
+</html>

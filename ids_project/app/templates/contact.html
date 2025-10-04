@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | NIDS Pro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+
+  {% include 'navbar.html' %}
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="flash {{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <main class="container">
+    <h2>Contact Us</h2>
+    <div class="card">
+      <p>Have questions, suggestions, or need assistance? We're here to help.</p>
+      <p><strong>Email:</strong> <a href="mailto:support@nidspro.com">support@nidspro.com</a></p>
+
+      {% if session.get('user') %}
+        <form class="contact-form" method="POST" action="{{ url_for('main.contact') }}">
+          <input type="text" name="name" value="{{ session.get('user') }}" readonly required>
+          <input type="email" name="email" value="{{ user_email }}" readonly required>
+          <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      {% else %}
+        <p style="color: #ffaaaa;">Please <a href="{{ url_for('auth.login') }}">log in</a> to send us a message.</p>
+      {% endif %}
+    </div>
+  </main>
+</body>
+
+<script>
+  setTimeout(() => {
+    const flashBox = document.querySelector(".flashes");
+    if (flashBox) {
+      flashBox.style.opacity = "0";
+      setTimeout(() => flashBox.remove(), 600);
+    }
+  }, 4000);
+</script>
+
+
+</html>

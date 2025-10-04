@@ -1,0 +1,17 @@
+<nav class="navbar">
+  <div class="logo">NIDS Pro</div>
+  <ul>
+    <li><a href="{{ url_for('main.home') }}">Home</a></li>
+    <li><a href="{{ url_for('main.about') }}">About</a></li>
+    <li><a href="{{ url_for('main.features') }}">Features</a></li>
+    <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+
+    {% if session.get('user') %}
+      <li><a href="{{ url_for('dash.home') }}">Dashboard</a></li>
+      <li><a href="{{ url_for('auth.logout') }}" class="btn secondary">Logout</a></li>
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}" class="btn secondary">Sign Up</a></li>
+      <li><a href="{{ url_for('auth.login') }}" class="btn">Login</a></li>
+    {% endif %}
+  </ul>
+</nav>

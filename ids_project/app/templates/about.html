@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About | NIDS Pro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <main class="container">
+    <h2>About NIDS Pro</h2>
+
+    <div class="card">
+      <p><strong>NIDS Pro</strong> is an AI-powered <em>Network Intrusion Detection System</em> designed to detect malicious network activity in real-time using advanced machine learning models. It provides users with intuitive tools to analyze, predict, and respond to security threats with speed and accuracy.</p>
+
+      <h3>🔒 What is NIDS?</h3>
+      <p>A Network Intrusion Detection System monitors traffic flowing across the network. It detects suspicious activities by comparing network packets against known attack signatures or through behavioral analysis.</p>
+
+    <img src="{{ url_for('static', filename='assets/NIDS_Image01.png') }}" 
+     alt="NIDS Architecture Diagram" 
+     style="width:100%; max-width:600px; margin: 20px auto; display: block; border: 1px solid #ccc; border-radius: 6px;">
+
+      <h3>⚙️ Key Features</h3>
+      <ul>
+        <li><strong>Real-Time Threat Detection:</strong> Continuously monitors uploaded traffic logs.</li>
+        <li><strong>ML-Powered Classification:</strong> Utilizes Random Forest classifier trained on benchmark intrusion datasets.</li>
+        <li><strong>Interactive Dashboard:</strong> Upload CSV files, get instant predictions, and download reports.</li>
+        <li><strong>Custom Encoder:</strong> Handles categorical features like protocols and services efficiently.</li>
+        <li><strong>User & Admin Authentication:</strong> Secure login system with role-based access control.</li>
+        <li><strong>Responsive UI:</strong> Lightweight frontend design for seamless access on desktop or mobile.</li>
+      </ul>
+
+      <h3>🚀 How It Works</h3>
+      <ol>
+        <li>The user logs in and uploads a CSV of captured network activity.</li>
+        <li>Preprocessing is applied (encoding, scaling) via a trained ML pipeline.</li>
+        <li>The system predicts each row as <strong>Normal</strong> or <strong>Attack</strong>.</li>
+        <li>Results are shown on screen and made available as downloadable CSV.</li>
+      </ol>
+
+      <h3>📁 Project Architecture</h3>
+      <ul>
+        <li><code>app/</code> - Flask Blueprints, auth logic, dashboards.</li>
+        <li><code>model/</code> - ML pipeline script, metadata, and saved `.pkl` file.</li>
+        <li><code>static/</code> - CSS, image assets, and prediction reports.</li>
+        <li><code>templates/</code> - HTML templates like login, dashboard, and about pages.</li>
+        <li><code>utils.py</code> - Utility functions like loading the trained model.</li>
+      </ul>
+
+      <h3>🧠 Machine Learning Model</h3>
+      <p>The backend ML model is a <strong>Random Forest Classifier</strong> trained on the NSL-KDD (20% sample) dataset. The model includes:</p>
+      <ul>
+        <li>Custom categorical encoding for protocol, service, and flags.</li>
+        <li>Standardization via <code>StandardScaler</code>.</li>
+        <li>Class balancing using <code>class_weight="balanced"</code>.</li>
+        <li>Saved with <code>joblib</code> for efficient loading and inference.</li>
+      </ul>
+
+      <h3>📊 Input File Format</h3>
+      <p>Your CSV file should contain 41 feature columns, followed optionally by a label and/or a final column like <code>count</code>. Columns should include:</p>
+      <pre class="code-block">duration, protocol_type, service, flag, src_bytes, dst_bytes, ..., dst_host_srv_rerror_rate</pre>
+
+      <h3>📬 Need Help?</h3>
+      <p>If you need assistance or find any issues, please refer to the <a href="{{ url_for('main.contact') }}">Contact page</a> or reach out to our team via <a href="mailto:support@nidspro.com">support@nidspro.com</a>.</p>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | IDS System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="top-right-nav">
+    <a href="{{ url_for('main.home') }}" class="btn home-btn">🏠 Home</a>
+  </div>
+
+  <h1 class="headline">Create Account in NIDS Pro</h1>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="flash {{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <div class="form-container">
+    <h2>Create Account</h2>
+    <form method="POST" action="{{ url_for('auth.register') }}">
+      <input type="text" name="username" placeholder="Username" required><br>
+      <input type="email" name="email" placeholder="Email" required><br>
+      <input type="password" name="password" placeholder="Password" required><br>
+      <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+      <input type="submit" value="Register">
+    </form>
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
+  </div>
+</body>
+<script>
+  setTimeout(() => {
+    const flashBox = document.querySelector(".flashes");
+    if (flashBox) {
+      flashBox.style.opacity = "0";
+      setTimeout(() => flashBox.remove(), 600);
+    }
+  }, 4000);
+</script>
+
+</html>

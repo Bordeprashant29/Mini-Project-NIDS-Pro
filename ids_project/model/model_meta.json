@@ -1,0 +1,12 @@
+{
+    "model_version": "1.0.1",
+    "trained_on": "2025-06-22 13:36:55",
+    "model_type": "RandomForestClassifier",
+    "accuracy": 1.0,
+    "num_features": 41,
+    "num_samples": 25192,
+    "label_distribution": {
+        "0": 13449,
+        "1": 11743
+    }
+}

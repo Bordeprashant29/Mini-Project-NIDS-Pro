@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Features | NIDS Pro</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+  <style>
+    .features-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .feature-card {
+      background: #0f2027;
+      border: 1px solid #00f5d4;
+      border-radius: 8px;
+      padding: 20px;
+      color: #f2f2f2;
+      box-shadow: 0 0 10px #00f5d4aa;
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    .feature-card h3 {
+      color: #00f5d4;
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <main class="container">
+    <h2 style="text-align: center; color: #00f5d4;">🔍 Key Features of NIDS Pro</h2>
+    <p style="text-align: center; max-width: 800px; margin: auto; color: #ccc;">
+      Explore the powerful tools and technologies integrated into NIDS Pro. From real-time packet analysis to ML-driven detection, our system is designed to provide comprehensive, automated intrusion detection.
+    </p>
+
+    <div class="features-container">
+
+      <div class="feature-card">
+        <h3>🧠 Machine Learning Detection</h3>
+        <p>NIDS Pro leverages a Random Forest Classifier trained on NSL-KDD to identify both known and unknown attacks, reducing false positives and improving detection accuracy.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>📦 Preprocessing Pipeline</h3>
+        <p>Integrated data preprocessing with custom encoding and scaling ensures all categorical and numerical data is formatted optimally before prediction.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>📊 Interactive Dashboard</h3>
+        <p>Upload datasets, get instant predictions, view result summaries, and download full reports—all through a modern, responsive interface.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🔐 User Authentication</h3>
+        <p>Secure registration and login system with admin support, username-based access, and session control.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>⚠️ Real-Time Analysis</h3>
+        <p>Processes data immediately upon upload to identify suspicious patterns and anomalies in real-time.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>📁 CSV Format Support</h3>
+        <p>Supports standardized 41/42/43-feature NSL-KDD-style CSVs with built-in error handling and format validation.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>📥 Report Download</h3>
+        <p>After analysis, users can download the full result CSV which includes predictions and preserved original features.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🎯 Accuracy Optimized</h3>
+        <p>Trained with <code>class_weight="balanced"</code> to handle class imbalance and ensure strong generalization to unseen attack types.</p>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>

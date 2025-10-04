@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home | NIDS Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      color: #f2f2f2;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 90vh;
+      background: url('{{ url_for("static", filename="images/hero_network.png") }}') no-repeat center center / cover;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6); /* overlay */
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: #00f5d4;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      background-color: #00f5d4;
+      color: #111;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #02c4a8;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #0f2027;
+      color: #bbb;
+      font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'navbar.html' %}
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Welcome to NIDS Pro</h1>
+      <p>Your next-generation Network Intrusion Detection System.</p>
+      <a href="{{ url_for('dash.home') }}" class="btn">🚀 Get Started</a>
+    </div>
+  </header>
+
+  <footer>
+    <p>© 2025 NIDS Pro. Built with Flask, Pandas & Scikit‑Learn.</p>
+  </footer>
+
+</body>
+
+<script>
+  setTimeout(() => {
+    const flashBox = document.querySelector(".flashes");
+    if (flashBox) {
+      flashBox.style.opacity = "0";
+      setTimeout(() => flashBox.remove(), 600);
+    }
+  }, 4000);
+</script>
+
+
+</html>
